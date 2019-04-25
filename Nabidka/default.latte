@@ -1,0 +1,30 @@
+{* Latte template *}
+
+{block content}
+<div class="row">
+<h2>Nabídka pobytových zájezdů</h2>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th><a n:href="Nabidka:default 'destinace'">Destinace</a></th>
+            <th><a n:href="Nabidka:default 'datum'">Den odjezdu</a></th>
+            <th><a n:href="Nabidka:default 'delka'">Počet nocí</a></th>
+            <th><a n:href="Nabidka:default 'cena DESC'">Cena</a></th>
+            <th>Akce</th>
+        </tr>
+    </thead>
+    <tbody>
+    {foreach $zajezdy as $zajezd}
+        <tr>
+            <td><a n:href="Nabidka:zaznam $zajezd->id">{$zajezd->destinace|upper}</a></td>
+            <td class="text-right">{$zajezd->datum|date:'%d.%m.%Y'}</td>
+            <td class="text-right">{$zajezd->delka} dnů</td>
+            <td class="text-right">{$zajezd->cena} Kč</td>
+            <td><a n:href="Nabidka:update $zajezd->id" class="btn btn-success">Editovat</a> 
+                <a n:href="Nabidka:delete $zajezd->id" class="btn btn-danger">Smazat</a></td>
+        </tr>
+    {/foreach} 
+    </tbody>
+</table>
+<p><a n:href="Nabidka:insert" class="btn btn-info">Nový</a></p>
+</div>
